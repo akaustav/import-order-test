@@ -1,4 +1,7 @@
-import { y } from './abc-def.js';
-import { x } from './abc.def.js';
+import { fileNameWithHyphens } from './abc-def.js';
+import { fileNameWithPeriods } from './abc.def.js';
+import { compare } from './sort-utils.js';
 
-console.log(x, y);
+const fileNames = [fileNameWithHyphens, fileNameWithPeriods];
+
+console.log(fileNames.sort(compare));

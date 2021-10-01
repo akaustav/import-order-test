@@ -1,1 +1,1 @@
-export const y = true;
+export const fileNameWithHyphens = 'abc-def.js';

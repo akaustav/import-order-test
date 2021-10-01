@@ -1,1 +1,1 @@
-export const x = 10;
+export const fileNameWithPeriods = 'abc.def.js';
