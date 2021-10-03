@@ -66,7 +66,7 @@ function sortSpecialCharacters() {
   // Summary:
   // utf-16: , - . / _
   // intl:   _ - , . /
-  // need?   . / , _ -
+  // hack?   . / , _ -
 }
 
 // Enable one method to test
