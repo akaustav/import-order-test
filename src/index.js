@@ -17,9 +17,6 @@ function testFileNames() {
 
   console.log(transformed.sort(compare));
   // Output: [ '_-file_with_periods_js', '_-file/with/hyphens_js' ]
-
-  // getSource(fileNameWithHyphens);
-  // getSource(fileNameWithPeriods);
 }
 
 function sortSpecialCharacters() {
@@ -31,19 +28,46 @@ function sortSpecialCharacters() {
     ']', '^', '_', '`', '{', '|',
     '}', '~'
   ];
-  // const specials = [ '-', '.', '/', '_' ];
+  // const specials = [ ',', '-', '.', '/', '_' ];
 
   const utf16Sort = [...specials].sort(utf16Comparator);
   const intlSort = [...specials].sort(collator.compare);
 
-  console.log('original', specials); // Output: original [ '-', '.', '/', '_' ]
-  console.log('utf16Sort', utf16Sort); // Output: utf16Sort [ '-', '.', '/', '_' ]
-  console.log('intlSort', intlSort); // Output: intlSort [ '_', '-', '.', '/' ]
-}
+  console.log('original', specials);
 
-// utf-16: - . / _
-// intl:   _ - . /
-// need?   . / - _
+  console.log('utf16Sort', utf16Sort);
+  // Output:
+
+  // utf16Sort [
+  //   '!', '"', '#', '$', '%', '&',
+  //   "'", '(', ')', '*', '+', ',',
+  //   '-', '.', '/', ':', ';', '<',
+  //   '=', '>', '?', '@', '[', '\\',
+  //   ']', '^', '_', '`', '{', '|',
+  //   '}', '~'
+  // ]
+
+  // utf16Sort [ ',', '-', '.', '/', '_' ]
+
+  console.log('intlSort', intlSort);
+  // Output:
+
+  // intlSort [
+  //   '_', '-',  ',', ';', ':', '!',
+  //   '?', '.',  "'", '"', '(', ')',
+  //   '[', ']',  '{', '}', '@', '*',
+  //   '/', '\\', '&', '#', '%', '`',
+  //   '^', '+',  '<', '=', '>', '|',
+  //   '~', '$'
+  // ]
+
+  // intlSort [ '_', '-', ',', '.', '/' ]
+
+  // Summary:
+  // utf-16: , - . / _
+  // intl:   _ - , . /
+  // need?   . / , _ -
+}
 
 // Enable one method to test
 // testFileNames();

@@ -23,23 +23,25 @@ export function transform2(input) {
   // Make `../` sort after `../../` but before `../a` etc.
   // Why a comma? See transform3
   return input
-    .replace(/^[./]*\/$/, "$&,")
+    .replace(/^[./]*\//, "$&,")
 }
 
 export function transform3(input) {
   // Make `.` and `/` sort before any other punctation.
-  // The default order is: _ - , x x x . x x x / x x x
-  // We’re changing it to: . / , x x x _ x x x - x x x
+  // For the 5 concerned characters:
+  // The ASCII order is  : , - . / _
+  // The Intl order is   : _ - , . /
+  // We’re changing it to: . / , _ -
   return input
     .replace(/[./_-]/g, (char) => {
       switch (char) {
-        case ".":
-          return "_";
-        case "/":
-          return "-";
-        case "_":
-          return ".";
         case "-":
+          return "_";
+        case ".":
+          return "-";
+        case "/":
+          return ".";
+        case "_":
           return "/";
         // istanbul ignore next
         default:
